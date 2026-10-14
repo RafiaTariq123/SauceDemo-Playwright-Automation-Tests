@@ -16,7 +16,7 @@ export class CheckoutOverviewPage {
     /**
    * URL pattern
    */
-  static readonly URL_PATTERN = /.*checkout-step-one.html/;
+  static readonly URL_PATTERN = /.*checkout-step-two.html/;
 
   constructor(page: Page) {
     this.page = page;
@@ -32,6 +32,14 @@ export class CheckoutOverviewPage {
    * Finalizes the purchase.
    * @returns A promise that resolves when the 'Finish' button is clicked.
    */
+  /**
+   * Waits for the browser to navigate to the overview page.
+   * Call this after fillInformation() to ensure the page is ready.
+   */
+  async waitForLoad(): Promise<void> {
+    await this.page.waitForURL(CheckoutOverviewPage.URL_PATTERN);
+  }
+
   async finishOrder(): Promise<void> {
     await this.finishButton.click();
   }

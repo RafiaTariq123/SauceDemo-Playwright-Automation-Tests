@@ -36,6 +36,7 @@ test.describe('Purchase Flow', () => {
     // 2. Shipping Information
     await cartPage.proceedToCheckout();
     await checkoutPage.fillInformation(user.first, user.last, user.zip);
+    await overviewPage.waitForLoad();
 
     // 3. Order Review (CheckoutOverviewPage)
     const summaryItem = overviewPage.getSummaryItemLocator(productTarget);
